@@ -19,7 +19,7 @@ declare global {
 window.Telegram.WebApp.HapticFeedback.notificationOccurred("success");
 ```
 
-### Types
+### Exported Types
 - [`WebAppUser`](https://core.telegram.org/bots/webapps#webappuser)
 - [`WebAppChat`](https://core.telegram.org/bots/webapps#webappchat)
 - [`WebAppInitData`](https://core.telegram.org/bots/webapps#webappinitdata)
