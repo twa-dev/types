@@ -1,0 +1,17 @@
+{
+  "name": "types",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/twa-dev/types.git",
+  "author": "Artur Stambultsian <bumbledos@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4",
+    "yarn-release": "^1.10.3"
+  }
+}
