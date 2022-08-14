@@ -2,6 +2,16 @@
   "name": "@twa-dev/types",
   "version": "0.0.3",
   "main": "index.js",
+  "description": "Types for Telegram Web Apps (TWA) SDK",
+  "keywords": [
+    "telegram",
+    "typescript",
+    "ts",
+    "types",
+    "telegram web apps",
+    "telegram bot",
+    "bot"
+  ],
   "repository": "https://github.com/twa-dev/types.git",
   "author": "Artur Stambultsian <bumbledos@gmail.com>",
   "license": "MIT",
