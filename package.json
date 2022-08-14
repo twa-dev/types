@@ -1,5 +1,5 @@
 {
-  "name": "types",
+  "name": "@twa-dev/types",
   "version": "0.0.2",
   "main": "index.js",
   "repository": "https://github.com/twa-dev/types.git",
