@@ -1,6 +1,6 @@
 {
   "name": "@twa-dev/types",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "index.js",
   "description": "Types for Telegram Web Apps (TWA) SDK",
   "keywords": [
