@@ -3,9 +3,14 @@
 
 Types for [Telegram Web Apps (TWA)](https://core.telegram.org/bots/webapps) SDK.
 
+![ts_AdobeExpress (2)](https://user-images.githubusercontent.com/5061840/184690893-d875b355-f8d3-44e8-824c-eb7728e89768.gif)
+
+### Installation
+
 ```
 npm i @twa-dev/types
 ```
+
 
 ### Usage Example
 
