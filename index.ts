@@ -77,7 +77,7 @@ export interface MainButton {
   }) => void;
 }
 
-type InvoiceStatuses = "pending" | "failed" | "cancelled" | "paid";
+export type InvoiceStatuses = "pending" | "failed" | "cancelled" | "paid";
 
 export type EventNames =
   | "invoiceClosed"
