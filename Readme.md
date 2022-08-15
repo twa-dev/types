@@ -1,4 +1,6 @@
 ## Types
+[![npm version](https://img.shields.io/npm/v/@twa-dev/types)](https://www.npmjs.com/package/@twa-dev/types)
+
 Types for [Telegram Web Apps (TWA)](https://core.telegram.org/bots/webapps) SDK.
 
 ```
