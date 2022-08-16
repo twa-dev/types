@@ -147,7 +147,7 @@ export interface WebApp {
   isVersionAtLeast: (version: string) => boolean;
   openInvoice: (
     url: string,
-    callback: (status: InvoiceStatuses) => unknown
+    callback?: (status: InvoiceStatuses) => unknown
   ) => void;
   setHeaderColor: (
     color: "bg_color" | "secondary_bg_color" | `#${string}`
@@ -157,10 +157,10 @@ export interface WebApp {
   ) => void;
   showConfirm: (
     message: string,
-    callback: (confirmed: boolean) => void
+    callback?: (confirmed: boolean) => void
   ) => void;
-  showPopup: (params: PopupParams, callback: (id?: string) => unknown) => void;
-  showAlert: (message: string, callback: () => unknown) => void;
+  showPopup: (params: PopupParams, callback?: (id?: string) => unknown) => void;
+  showAlert: (message: string, callback?: () => unknown) => void;
   enableClosingConfirmation: VoidFunction;
   disableClosingConfirmation: VoidFunction;
   ready: VoidFunction;
