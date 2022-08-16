@@ -1,18 +1,11 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "lib": ["dom", "esnext"],
     "strict": true,
     "module": "esnext",
     "moduleResolution": "Node",
-    "isolatedModules": true,
-    "jsx": "react-jsx",
     "declaration": true
   },
-  "files": ["src/MainButton.tsx",
-    "index.ts"
-  ]
+  "files": ["index.ts"]
 }
