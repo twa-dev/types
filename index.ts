@@ -116,10 +116,22 @@ export type PopupButton = {
     }
 );
 
+export type Platforms =
+  | "android"
+  | "android_x"
+  | "ios"
+  | "macos"
+  | "tdesktop"
+  | "webk"
+  | "webz"
+  | "unigram"
+  | "unknown";
+
 export interface WebApp {
   isExpanded: boolean;
   viewportHeight: number;
   viewportStableHeight: number;
+  platform: Platforms;
   headerColor: `#${string}`;
   backgroundColor: `#${string}`;
   isClosingConfirmationEnabled: boolean;
