@@ -39,3 +39,4 @@ window.Telegram.WebApp.HapticFeedback.notificationOccurred("success");
 - [`PopupParams`](https://core.telegram.org/bots/webapps#popupparams)
 - [`PopupButton`](https://core.telegram.org/bots/webapps#popupbutton)
 - [`WebApp`](https://core.telegram.org/bots/webapps#initializing-web-apps)
+- `Platforms`
