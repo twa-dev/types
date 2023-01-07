@@ -116,6 +116,10 @@ export type PopupButton = {
     }
 );
 
+export type ScanQrPopupParams = {
+  text?: string;
+};
+
 export type Platforms =
   | "android"
   | "android_x"
@@ -175,6 +179,12 @@ export interface WebApp {
   showAlert: (message: string, callback?: () => unknown) => void;
   enableClosingConfirmation: VoidFunction;
   disableClosingConfirmation: VoidFunction;
+  showScanQrPopup: (
+    params: ScanQrPopupParams,
+    callback?: (text: string) => void | true
+  ) => void;
+  closeScanQrPopup: () => void;
+  readTextFromClipboard: (callback?: (text: string) => unknown) => void;
   ready: VoidFunction;
 }
 
