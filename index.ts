@@ -86,7 +86,9 @@ export type EventNames =
   | "mainButtonClicked"
   | "viewportChanged"
   | "themeChanged"
-  | "popupClosed";
+  | "popupClosed"
+  | "qrTextReceived"
+  | "clipboardTextReceived";
 
 export type EventParams = {
   invoiceClosed: { url: string; status: InvoiceStatuses };
@@ -96,6 +98,8 @@ export type EventParams = {
   viewportChanged: { isStateStable: boolean };
   themeChanged: void;
   popupClosed: { button_id: string | null };
+  qrTextReceived: { data: string };
+  clipboardTextReceived: { data: string };
 };
 
 export type PopupParams = {
