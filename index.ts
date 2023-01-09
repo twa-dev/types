@@ -160,7 +160,7 @@ export interface WebApp {
   expand: VoidFunction;
   MainButton: MainButton;
   HapticFeedback: HapticFeedback;
-  openLink: (link: string) => void;
+  openLink: (link: string, options?: { try_instant_view: boolean }) => void;
   openTelegramLink: (link: string) => void;
   BackButton: BackButton;
   version: string;
