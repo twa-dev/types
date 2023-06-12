@@ -21,11 +21,13 @@ export interface WebAppInitData {
   query_id?: string;
   auth_date: number;
   hash: string;
-  user?: WebAppUser;
+  user?: WebAppUser & { added_to_attachment_menu?: boolean };
   receiver?: WebAppUser;
   start_param?: string;
   can_send_after?: number;
   chat?: WebAppChat;
+  chat_type?: "sender" | "private" | "group" | "supergroup" | "channel";
+  chat_instance?: string;
 }
 
 export interface ThemeParams {
@@ -190,6 +192,10 @@ export interface WebApp {
   closeScanQrPopup: () => void;
   readTextFromClipboard: (callback?: (text: string) => unknown) => void;
   ready: VoidFunction;
+  switchInlineQuery: (
+    query: string,
+    chooseChatTypes?: Array<"users" | "bots" | "groups" | "channels">
+  ) => void;
 }
 
 export interface Telegram {
