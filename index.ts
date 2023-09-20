@@ -159,13 +159,13 @@ export type PopupButton = {
   id?: string;
 } & (
   | {
-  type: "default" | "destructive";
-  text: string;
-}
+      type: "default" | "destructive";
+      text: string;
+    }
   | {
-  type: "ok" | "close" | "cancel";
-}
-  );
+      type: "ok" | "close" | "cancel";
+    }
+);
 
 export type ScanQrPopupParams = {
   text?: string;
