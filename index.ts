@@ -21,7 +21,10 @@ export interface WebAppInitData {
   query_id?: string;
   auth_date: number;
   hash: string;
-  user?: WebAppUser & { added_to_attachment_menu?: boolean, allows_write_to_pm?: boolean; };
+  user?: WebAppUser & {
+    added_to_attachment_menu?: boolean,
+    allows_write_to_pm?: boolean;
+  };
   receiver?: WebAppUser;
   start_param?: string;
   can_send_after?: number;
@@ -142,6 +145,8 @@ export type EventParams = {
   popupClosed: { button_id: string | null };
   qrTextReceived: { data: string };
   clipboardTextReceived: { data: string };
+  writeAccessRequested: { status: "allowed" | "cancelled" };
+  contactRequested: { status: "sent" | "cancelled" };
 };
 
 export type PopupParams = {
