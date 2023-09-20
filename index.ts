@@ -22,7 +22,7 @@ export interface WebAppInitData {
   auth_date: number;
   hash: string;
   user?: WebAppUser & {
-    added_to_attachment_menu?: boolean,
+    added_to_attachment_menu?: boolean;
     allows_write_to_pm?: boolean;
   };
   receiver?: WebAppUser;
