@@ -7,6 +7,8 @@ export interface WebAppUser {
   language_code?: string;
   is_premium?: boolean;
   photo_url?: string;
+  added_to_attachment_menu?: boolean;
+  allows_write_to_pm?: boolean;
 }
 
 export interface WebAppChat {
@@ -50,7 +52,40 @@ export interface HapticFeedback {
   selectionChanged: () => HapticFeedback;
 }
 
+export type CloudStorageKey = string;
+export type CloudStorageValue = string;
+interface CloudStorageItems {
+  [key: CloudStorageKey]: CloudStorageValue;
+}
+export interface CloudStorage {
+  setItem: (
+    key: CloudStorageKey,
+    value: CloudStorageValue,
+    callback?: (error: string | null, result?: boolean) => void
+  ) => void;
+  getItem: (
+    key: CloudStorageKey,
+    callback?: (error: string | null, result?: CloudStorageValue) => void
+  ) => void;
+  getItems: (
+    keys: Array<CloudStorageKey>,
+    callback?: (error: string | null, result?: CloudStorageItems ) => void
+  ) => void;
+  getKeys: (
+    callback?: (error: string | null, result?: Array<CloudStorageKey>) => void
+  ) => void;
+  removeItem: (
+    key: CloudStorageKey,
+    callback?: (error: string | null, result?: boolean) => void
+  ) => void;
+  removeItems: (
+    key: Array<CloudStorageKey>,
+    callback?: (error: string | null, result?: boolean) => void
+  ) => void;
+}
+
 export interface BackButton {
+  isVisible: boolean;
   show: VoidFunction;
   hide: VoidFunction;
   onClick: (cb: VoidFunction) => void;
@@ -61,6 +96,9 @@ export interface MainButton {
   isActive: boolean;
   isVisible: boolean;
   isProgressVisible: boolean;
+  text: string;
+  color: `#${string}`;
+  textColor: `#${string}`;
   show: VoidFunction;
   hide: VoidFunction;
   enable: VoidFunction;
@@ -90,7 +128,9 @@ export type EventNames =
   | "themeChanged"
   | "popupClosed"
   | "qrTextReceived"
-  | "clipboardTextReceived";
+  | "clipboardTextReceived"
+  | "writeAccessRequested"
+  | "contactRequested";
 
 export type EventParams = {
   invoiceClosed: { url: string; status: InvoiceStatuses };
@@ -132,6 +172,7 @@ export type Platforms =
   | "ios"
   | "macos"
   | "tdesktop"
+  | "weba"
   | "webk"
   | "webz"
   | "unigram"
@@ -162,6 +203,7 @@ export interface WebApp {
   expand: VoidFunction;
   MainButton: MainButton;
   HapticFeedback: HapticFeedback;
+  CloudStorage: CloudStorage;
   openLink: (link: string, options?: { try_instant_view: boolean }) => void;
   openTelegramLink: (link: string) => void;
   BackButton: BackButton;
@@ -196,6 +238,8 @@ export interface WebApp {
     query: string,
     chooseChatTypes?: Array<"users" | "bots" | "groups" | "channels">
   ) => void;
+  requestWriteAccess: (callback?: (access: boolean) => unknown) => void;
+  requestContact: (callback?: (access: boolean) => unknown) => void;
 }
 
 export interface Telegram {
