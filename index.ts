@@ -50,11 +50,13 @@ export interface HapticFeedback {
   selectionChanged: () => HapticFeedback;
 }
 
-export type CloudStorageKey = string;
-export type CloudStorageValue = string;
+type CloudStorageKey = string;
+type CloudStorageValue = string;
+
 interface CloudStorageItems {
   [key: CloudStorageKey]: CloudStorageValue;
 }
+
 export interface CloudStorage {
   setItem: (
     key: CloudStorageKey,
@@ -67,7 +69,7 @@ export interface CloudStorage {
   ) => void;
   getItems: (
     keys: Array<CloudStorageKey>,
-    callback?: (error: string | null, result?: CloudStorageItems ) => void
+    callback?: (error: string | null, result?: CloudStorageItems) => void
   ) => void;
   getKeys: (
     callback?: (error: string | null, result?: Array<CloudStorageKey>) => void
@@ -152,13 +154,13 @@ export type PopupButton = {
   id?: string;
 } & (
   | {
-      type: "default" | "destructive";
-      text: string;
-    }
+  type: "default" | "destructive";
+  text: string;
+}
   | {
-      type: "ok" | "close" | "cancel";
-    }
-);
+  type: "ok" | "close" | "cancel";
+}
+  );
 
 export type ScanQrPopupParams = {
   text?: string;
