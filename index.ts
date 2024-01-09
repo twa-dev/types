@@ -120,6 +120,14 @@ export interface MainButton {
   }) => void;
 }
 
+export interface SettingsButton {
+  isVisible: boolean;
+  onClick: (callback: VoidFunction) => SettingsButton;
+  offClick: (callback: VoidFunction) => SettingsButton;
+  show: () => SettingsButton;
+  hide: () => SettingsButton;
+}
+
 export type InvoiceStatuses = "pending" | "failed" | "cancelled" | "paid";
 
 export type EventNames =
@@ -211,6 +219,7 @@ export interface WebApp {
   openLink: (link: string, options?: { try_instant_view: boolean }) => void;
   openTelegramLink: (link: string) => void;
   BackButton: BackButton;
+  SettingsButton: SettingsButton;
   version: string;
   isVersionAtLeast: (version: string) => boolean;
   openInvoice: (
