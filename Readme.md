@@ -42,4 +42,5 @@ window.Telegram.WebApp.HapticFeedback.notificationOccurred("success");
 - [`WebApp`](https://core.telegram.org/bots/webapps#initializing-web-apps)
 - [`ScanQrPopupParams`](https://core.telegram.org/bots/webapps#scanqrpopupparams)
 - [`CloudStorage`](https://core.telegram.org/bots/webapps#cloudstorage)
+- [`BiometricManager`](https://core.telegram.org/bots/webapps#biometricmanager)
 - `Platforms`

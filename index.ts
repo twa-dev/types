@@ -93,6 +93,38 @@ export interface CloudStorage {
   ) => void;
 }
 
+export interface BiometricManager {
+  isInited: boolean;
+  isBiometricAvailable: boolean;
+  biometricType: "finger" | "face" | "unknown";
+  isAccessRequested: boolean;
+  isAccessGranted: boolean;
+  isBiometricTokenSaved: boolean;
+  deviceId: string;
+  init: (cb?: VoidFunction) => BiometricManager;
+  requestAccess: (
+      params: BiometricRequestAccessParams,
+      callback?: (success: boolean) => void
+  ) => BiometricManager;
+  authenticate: (
+      params: BiometricAuthenticateParams,
+      callback?: (success: boolean) => void
+  ) => BiometricManager;
+  updateBiometricToken: (
+      token: string,
+      callback?: (success: boolean) => void
+  ) => BiometricManager;
+  openSettings: () => BiometricManager;
+}
+
+export interface BiometricRequestAccessParams {
+  reason: string;
+}
+
+export interface BiometricAuthenticateParams {
+  reason: string;
+}
+
 export interface BackButton {
   isVisible: boolean;
   show: VoidFunction;
@@ -222,6 +254,7 @@ export interface WebApp {
   MainButton: MainButton;
   HapticFeedback: HapticFeedback;
   CloudStorage: CloudStorage;
+  BiometricManager: BiometricManager;
   openLink: (link: string, options?: { try_instant_view: boolean }) => void;
   openTelegramLink: (link: string) => void;
   BackButton: BackButton;
