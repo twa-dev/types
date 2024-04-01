@@ -108,7 +108,7 @@ export interface BiometricManager {
   ) => BiometricManager;
   authenticate: (
       params: BiometricAuthenticateParams,
-      callback?: (success: boolean) => void
+      callback?: (success: boolean, token?: string) => void
   ) => BiometricManager;
   updateBiometricToken: (
       token: string,
