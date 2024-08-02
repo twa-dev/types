@@ -148,7 +148,8 @@ export type EventNames =
   | "qrTextReceived"
   | "clipboardTextReceived"
   | "writeAccessRequested"
-  | "contactRequested";
+  | "contactRequested"
+  | "scanQrPopupClosed";
 
 export type EventParams = {
   invoiceClosed: { url: string; status: InvoiceStatuses };
@@ -162,6 +163,7 @@ export type EventParams = {
   clipboardTextReceived: { data: string };
   writeAccessRequested: { status: "allowed" | "cancelled" };
   contactRequested: { status: "sent" | "cancelled" };
+  scanQrPopupClosed: void;
 };
 
 export type PopupParams = {
