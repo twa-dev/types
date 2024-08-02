@@ -231,6 +231,16 @@ export type BiometricManager = {
   openSettings: () => BiometricManager;
 };
 
+export type StoryWidgetLink = {
+  url: string;
+  name?: string;
+};
+
+export type ShareStoryParams = {
+  text?: string;
+  widget_link?: StoryWidgetLink;
+};
+
 export interface WebApp {
   isExpanded: boolean;
   viewportHeight: number;
@@ -298,6 +308,7 @@ export interface WebApp {
   isVerticalSwipesEnabled: boolean;
   enableVerticalSwipes: VoidFunction;
   disableVerticalSwipes: VoidFunction;
+  shareToStory: (mediaURL: string, params?: ShareStoryParams) => void;
 }
 
 export interface Telegram {
