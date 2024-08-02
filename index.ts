@@ -196,6 +196,38 @@ export type Platforms =
   | "unigram"
   | "unknown";
 
+export type BiometricRequestAccessParams = {
+  reason?: string;
+};
+
+export type BiometricAuthenticateParams = {
+  reason?: string;
+};
+
+export type BiometricManager = {
+  isInited: boolean;
+  isBiometricAvailable: boolean;
+  biometricType: "finger" | "face" | "unknown";
+  isAccessRequested: boolean;
+  isAccessGranted: boolean;
+  isBiometricTokenSaved: boolean;
+  deviceId: string;
+  init: (callback?: VoidFunction) => BiometricManager;
+  requestAccess: (
+    params: BiometricRequestAccessParams,
+    callback?: (isAccessGranted: boolean) => void
+  ) => BiometricManager;
+  authenticate: (
+    params: BiometricAuthenticateParams,
+    callback?: (isAuthenticated: boolean) => void
+  ) => BiometricManager;
+  updateBiometricToken: (
+    token: string,
+    callback?: (isBiometricTokenUpdated: boolean) => void
+  ) => BiometricManager;
+  openSettings: () => BiometricManager;
+};
+
 export interface WebApp {
   isExpanded: boolean;
   viewportHeight: number;
@@ -259,6 +291,7 @@ export interface WebApp {
   ) => void;
   requestWriteAccess: (callback?: (access: boolean) => unknown) => void;
   requestContact: (callback?: (access: boolean) => unknown) => void;
+  BiometricManager: BiometricManager;
 }
 
 export interface Telegram {
