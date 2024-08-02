@@ -47,6 +47,7 @@ export interface ThemeParams {
   section_header_text_color: `#${string}`;
   subtitle_text_color: `#${string}`;
   destructive_text_color: `#${string}`;
+  section_separator_color: `#${string}`;
 }
 
 export interface HapticFeedback {
@@ -147,7 +148,8 @@ export type EventNames =
   | "qrTextReceived"
   | "clipboardTextReceived"
   | "writeAccessRequested"
-  | "contactRequested";
+  | "contactRequested"
+  | "scanQrPopupClosed";
 
 export type EventParams = {
   invoiceClosed: { url: string; status: InvoiceStatuses };
@@ -161,6 +163,7 @@ export type EventParams = {
   clipboardTextReceived: { data: string };
   writeAccessRequested: { status: "allowed" | "cancelled" };
   contactRequested: { status: "sent" | "cancelled" };
+  scanQrPopupClosed: void;
 };
 
 export type PopupParams = {
@@ -195,6 +198,48 @@ export type Platforms =
   | "webk"
   | "unigram"
   | "unknown";
+
+export type BiometricRequestAccessParams = {
+  reason?: string;
+};
+
+export type BiometricAuthenticateParams = {
+  reason?: string;
+};
+
+export type BiometricManager = {
+  isInited: boolean;
+  isBiometricAvailable: boolean;
+  biometricType: "finger" | "face" | "unknown";
+  isAccessRequested: boolean;
+  isAccessGranted: boolean;
+  isBiometricTokenSaved: boolean;
+  deviceId: string;
+  init: (callback?: VoidFunction) => BiometricManager;
+  requestAccess: (
+    params: BiometricRequestAccessParams,
+    callback?: (isAccessGranted: boolean) => void
+  ) => BiometricManager;
+  authenticate: (
+    params: BiometricAuthenticateParams,
+    callback?: (isAuthenticated: boolean) => void
+  ) => BiometricManager;
+  updateBiometricToken: (
+    token: string,
+    callback?: (isBiometricTokenUpdated: boolean) => void
+  ) => BiometricManager;
+  openSettings: () => BiometricManager;
+};
+
+export type StoryWidgetLink = {
+  url: string;
+  name?: string;
+};
+
+export type ShareStoryParams = {
+  text?: string;
+  widget_link?: StoryWidgetLink;
+};
 
 export interface WebApp {
   isExpanded: boolean;
@@ -259,6 +304,11 @@ export interface WebApp {
   ) => void;
   requestWriteAccess: (callback?: (access: boolean) => unknown) => void;
   requestContact: (callback?: (access: boolean) => unknown) => void;
+  BiometricManager: BiometricManager;
+  isVerticalSwipesEnabled: boolean;
+  enableVerticalSwipes: VoidFunction;
+  disableVerticalSwipes: VoidFunction;
+  shareToStory: (mediaURL: string, params?: ShareStoryParams) => void;
 }
 
 export interface Telegram {

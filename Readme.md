@@ -42,4 +42,9 @@ window.Telegram.WebApp.HapticFeedback.notificationOccurred("success");
 - [`WebApp`](https://core.telegram.org/bots/webapps#initializing-web-apps)
 - [`ScanQrPopupParams`](https://core.telegram.org/bots/webapps#scanqrpopupparams)
 - [`CloudStorage`](https://core.telegram.org/bots/webapps#cloudstorage)
+- [`BiometricManager`](https://core.telegram.org/bots/webapps#biometricmanager)
+- [`BiometricRequestAccessParams`](https://core.telegram.org/bots/webapps#biometricrequestaccessparams)
+- [`BiometricAuthenticateParams`](https://core.telegram.org/bots/webapps#biometricauthenticateparams)
+- [`StoryShareParams`](https://core.telegram.org/bots/webapps#storyshareparams)
+- [`StoryWidgetLink`](https://core.telegram.org/bots/webapps#storywidgetlink)
 - `Platforms`
