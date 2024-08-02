@@ -293,6 +293,9 @@ export interface WebApp {
   requestWriteAccess: (callback?: (access: boolean) => unknown) => void;
   requestContact: (callback?: (access: boolean) => unknown) => void;
   BiometricManager: BiometricManager;
+  isVerticalSwipesEnabled: boolean;
+  enableVerticalSwipes: VoidFunction;
+  disableVerticalSwipes: VoidFunction;
 }
 
 export interface Telegram {
