@@ -48,6 +48,7 @@ export interface ThemeParams {
   subtitle_text_color: `#${string}`;
   destructive_text_color: `#${string}`;
   section_separator_color: `#${string}`;
+  bottom_bar_bg_color: `#${string}`;
 }
 
 export interface HapticFeedback {
@@ -102,7 +103,16 @@ export interface BackButton {
   offClick: (cb: VoidFunction) => void;
 }
 
-export interface MainButton {
+type BottomButtonParams = {
+  color?: string;
+  text?: string;
+  text_color?: string;
+  is_active?: boolean;
+  is_visible?: boolean;
+  has_shine_effect?: boolean;
+};
+
+export interface BottomButton {
   isActive: boolean;
   isVisible: boolean;
   isProgressVisible: boolean;
@@ -118,13 +128,19 @@ export interface MainButton {
   onClick: (callback: VoidFunction) => void;
   offClick: (callback: VoidFunction) => void;
   setText: (text: string) => void;
-  setParams: (params: {
-    color?: string;
-    text?: string;
-    text_color?: string;
-    is_active?: boolean;
-    is_visible?: boolean;
-  }) => void;
+  setParams: (params: BottomButtonParams) => void;
+  hasShineEffect: string;
+}
+
+export type MainButton = BottomButton;
+
+export interface SecondaryButton extends BottomButton {
+  position: "top" | "left" | "bottom" | "right";
+  setParams: (
+    params: BottomButtonParams & {
+      position?: SecondaryButton["position"];
+    }
+  ) => void;
 }
 
 export interface SettingsButton {
@@ -142,6 +158,7 @@ export type EventNames =
   | "settingsButtonClicked"
   | "backButtonClicked"
   | "mainButtonClicked"
+  | "secondaryButtonClicked"
   | "viewportChanged"
   | "themeChanged"
   | "popupClosed"
@@ -156,6 +173,7 @@ export type EventParams = {
   settingsButtonClicked: void;
   backButtonClicked: void;
   mainButtonClicked: void;
+  secondaryButtonClicked: void;
   viewportChanged: { isStateStable: boolean };
   themeChanged: void;
   popupClosed: { button_id: string | null };
@@ -265,6 +283,7 @@ export interface WebApp {
   close: VoidFunction;
   expand: VoidFunction;
   MainButton: MainButton;
+  SecondaryButton: SecondaryButton;
   HapticFeedback: HapticFeedback;
   CloudStorage: CloudStorage;
   openLink: (link: string, options?: { try_instant_view: boolean }) => void;
@@ -309,6 +328,8 @@ export interface WebApp {
   enableVerticalSwipes: VoidFunction;
   disableVerticalSwipes: VoidFunction;
   shareToStory: (mediaURL: string, params?: ShareStoryParams) => void;
+  bottomBarColor: string;
+  setBottomBarColor: (bottomBarColor: string) => void;
 }
 
 export interface Telegram {
