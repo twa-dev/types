@@ -33,7 +33,9 @@ window.Telegram.WebApp.HapticFeedback.notificationOccurred("success");
 - [`ThemeParams`](https://core.telegram.org/bots/webapps#themeparams)
 - [`HapticFeedback`](https://core.telegram.org/bots/webapps#hapticfeedback)
 - [`BackButton`](https://core.telegram.org/bots/webapps#backbutton)
-- [`MainButton`](https://core.telegram.org/bots/webapps#mainbutton)
+- [`BottomButton`](https://core.telegram.org/bots/webapps#bottombutton)
+- `MainButton`
+- `SecondaryButton`
 - [`SettingsButton`](https://core.telegram.org/bots/webapps#settingsbutton)
 - [`EventNames`](https://core.telegram.org/bots/webapps#events-available-for-web-apps)
 - [`EventParams`](https://core.telegram.org/bots/webapps#events-available-for-web-apps)
