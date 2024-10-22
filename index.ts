@@ -97,10 +97,10 @@ export interface CloudStorage {
 
 export interface BackButton {
   isVisible: boolean;
-  show: VoidFunction;
-  hide: VoidFunction;
-  onClick: (cb: VoidFunction) => void;
-  offClick: (cb: VoidFunction) => void;
+  show: () => BackButton;
+  hide: () => BackButton;
+  onClick: (cb: VoidFunction) => BackButton;
+  offClick: (cb: VoidFunction) => BackButton;
 }
 
 type BottomButtonParams = {
@@ -119,16 +119,16 @@ export interface BottomButton {
   text: string;
   color: `#${string}`;
   textColor: `#${string}`;
-  show: VoidFunction;
-  hide: VoidFunction;
-  enable: VoidFunction;
-  disable: VoidFunction;
-  hideProgress: VoidFunction;
-  showProgress: (leaveActive?: boolean) => void;
-  onClick: (callback: VoidFunction) => void;
-  offClick: (callback: VoidFunction) => void;
-  setText: (text: string) => void;
-  setParams: (params: BottomButtonParams) => void;
+  show: () => BottomButton;
+  hide: () => BottomButton;
+  enable: () => BottomButton;
+  disable: () => BottomButton;
+  hideProgress: () => BottomButton;
+  showProgress: (leaveActive?: boolean) => BottomButton;
+  onClick: (callback: VoidFunction) => BottomButton;
+  offClick: (callback: VoidFunction) => BottomButton;
+  setText: (text: string) => BottomButton;
+  setParams: (params: BottomButtonParams) => BottomButton;
   hasShineEffect: string;
 }
 
@@ -140,7 +140,7 @@ export interface SecondaryButton extends BottomButton {
     params: BottomButtonParams & {
       position?: SecondaryButton["position"];
     }
-  ) => void;
+  ) => SecondaryButton;
 }
 
 export interface SettingsButton {
