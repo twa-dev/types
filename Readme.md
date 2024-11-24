@@ -49,4 +49,8 @@ window.Telegram.WebApp.HapticFeedback.notificationOccurred("success");
 - [`BiometricAuthenticateParams`](https://core.telegram.org/bots/webapps#biometricauthenticateparams)
 - [`StoryShareParams`](https://core.telegram.org/bots/webapps#storyshareparams)
 - [`StoryWidgetLink`](https://core.telegram.org/bots/webapps#storywidgetlink)
+- [`Accelerometer`](https://core.telegram.org/bots/webapps#accelerometer)
+- [`DeviceOrientation`](https://core.telegram.org/bots/webapps#deviceorientation)
+- [`Gyroscope`](https://core.telegram.org/bots/webapps#gyroscope)
+- [`LocationManager`](https://core.telegram.org/bots/webapps#locationmanager)
 - `Platforms`
