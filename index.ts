@@ -31,6 +31,7 @@ export interface WebAppInitData {
   chat?: WebAppChat;
   chat_type?: "sender" | "private" | "group" | "supergroup" | "channel";
   chat_instance?: string;
+  signature: string;
 }
 
 export interface ThemeParams {
@@ -225,6 +226,80 @@ export type BiometricAuthenticateParams = {
   reason?: string;
 };
 
+export type AccelerometerStartParams = {
+  refresh_rate?: number;
+};
+
+export type Accelerometer = {
+  isStarted: boolean;
+  x: number;
+  y: number;
+  z: number;
+  start: (
+    params: AccelerometerStartParams,
+    callback?: (isStarted: boolean) => void
+  ) => Accelerometer;
+  stop: (callback?: (isStopped: boolean) => void) => Accelerometer;
+};
+
+export type DeviceOrientationStartParams = {
+  refresh_rate?: number;
+  need_absolute?: boolean;
+};
+
+export type DeviceOrientation = {
+  isStarted: boolean;
+  absolute: boolean;
+  alpha: number;
+  beta: number;
+  gamma: number;
+  start: (
+    params: DeviceOrientationStartParams,
+    callback?: (isStarted: boolean) => void
+  ) => DeviceOrientation;
+  stop: (callback?: (isStopped: boolean) => void) => DeviceOrientation;
+};
+
+export type GyroscopeStartParams = {
+  refresh_rate?: number;
+};
+
+export type Gyroscope = {
+  isStarted: boolean;
+  x: number;
+  y: number;
+  z: number;
+  start: (
+    params: GyroscopeStartParams,
+    callback?: (isStarted: boolean) => void
+  ) => Gyroscope;
+  stop: (callback?: (isStopped: boolean) => void) => Gyroscope;
+};
+
+export type LocationData = {
+  latitude: number;
+  longitude: number;
+  altitude: number;
+  course: number;
+  speed: number;
+  horizontal_accuracy: number;
+  vertical_accuracy: number;
+  course_accuracy: number;
+  speed_accuracy: number;
+};
+
+export type LocationManager = {
+  isInited: boolean;
+  isLocationAvailable: boolean;
+  isAccessRequested: boolean;
+  isAccessGranted: boolean;
+  init: (callback?: (isInitialized: boolean) => void) => LocationManager;
+  getLocation: (
+    callback: (data: LocationData | null) => void
+  ) => LocationManager;
+  openSettings: () => LocationManager;
+};
+
 export type BiometricManager = {
   isInited: boolean;
   isBiometricAvailable: boolean;
@@ -257,6 +332,26 @@ export type StoryWidgetLink = {
 export type ShareStoryParams = {
   text?: string;
   widget_link?: StoryWidgetLink;
+};
+
+export type SafeAreaInset = {
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type ContentSafeAreaInset = SafeAreaInset;
+
+export type HomeScreenStatus = "unsupported" | "unknown" | "added" | "missed";
+
+export type EmojiStatusParams = {
+  duration?: number;
+};
+
+export type DownloadFileParams = {
+  url: string;
+  file_name: string;
 };
 
 export interface WebApp {
@@ -330,6 +425,34 @@ export interface WebApp {
   shareToStory: (mediaURL: string, params?: ShareStoryParams) => void;
   bottomBarColor: string;
   setBottomBarColor: (bottomBarColor: string) => void;
+  isActive: boolean;
+  isFullscreen: boolean;
+  isOrientationLocked: boolean;
+  safeAreaInset: SafeAreaInset;
+  contentSafeAreaInset: ContentSafeAreaInset;
+  Accelerometer: Accelerometer;
+  DeviceOrientation: DeviceOrientation;
+  Gyroscope: Gyroscope;
+  LocationManager: LocationManager;
+  requestFullscreen: VoidFunction;
+  exitFullscreen: VoidFunction;
+  lockOrientation: VoidFunction;
+  unlockOrientation: VoidFunction;
+  addToHomeScreen: VoidFunction;
+  checkHomeScreenStatus: (
+    callback?: (status: HomeScreenStatus) => void
+  ) => void;
+  shareMessage: (msg_id: string, callback?: (isSent: boolean) => void) => void;
+  setEmojiStatus: (
+    custom_emoji_id: string,
+    params?: EmojiStatusParams,
+    callback?: (isSet: boolean) => void
+  ) => void;
+  requestEmojiStatusAccess: (callback?: (isGranted: boolean) => void) => void;
+  downloadFile: (
+    params: DownloadFileParams,
+    callback?: (isAccepted: boolean) => void
+  ) => void;
 }
 
 export interface Telegram {
