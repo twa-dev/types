@@ -370,7 +370,7 @@ interface Gyroscope {
     x: number;
     y: number;
     z: number;
-    start: (params: GyroscopeStartParams[], callback?: () => unknown) => void,
+    start: (params: GyroscopeStartParams, callback?: () => unknown) => void,
     stop: (callback?: () => unknown) => void,
 }
 interface GyroscopeStartParams {
@@ -383,7 +383,7 @@ interface DeviceOrientation {
     alpha: number;
     beta: number;
     gamma: number;
-    start: (params: DeviceOrientationStartParams[], callback?: () => unknown) => void,
+    start: (params: DeviceOrientationStartParams, callback?: () => unknown) => void,
     stop: (callback?: () => unknown) => void,
 }
 interface DeviceOrientationStartParams {
@@ -396,7 +396,7 @@ interface Accelerometer {
     x: number;
     y: number;
     z: number;
-    start: (params: AccelerometerStartParams[], callback?: () => unknown) => void,
+    start: (params: AccelerometerStartParams, callback?: () => unknown) => void,
     stop: (callback?: () => unknown) => void,
 }
 interface AccelerometerStartParams {
