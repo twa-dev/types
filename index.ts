@@ -167,7 +167,35 @@ export type EventNames =
   | "clipboardTextReceived"
   | "writeAccessRequested"
   | "contactRequested"
-  | "scanQrPopupClosed";
+  | "scanQrPopupClosed"
+  | "activated"
+  | "deactivated"
+  | "safeAreaChanged"
+  | "contentSafeAreaChanged"
+  | "fullscreenChanged"
+  | "fullscreenFailed"
+  | "homeScreenAdded"
+  | "homeScreenChecked"
+  | "accelerometerStarted"
+  | "accelerometerStopped"
+  | "accelerometerChanged"
+  | "accelerometerFailed"
+  | "deviceOrientationStarted"
+  | "deviceOrientationStopped"
+  | "deviceOrientationChanged"
+  | "deviceOrientationFailed"
+  | "gyroscopeStarted"
+  | "gyroscopeStopped"
+  | "gyroscopeChanged"
+  | "gyroscopeFailed"
+  | "locationManagerUpdated"
+  | "locationRequested"
+  | "shareMessageSent"
+  | "shareMessageFailed"
+  | "emojiStatusSet"
+  | "emojiStatusFailed"
+  | "emojiStatusAccessRequested"
+  | "fileDownloadRequested";
 
 export type EventParams = {
   invoiceClosed: { url: string; status: InvoiceStatuses };
@@ -183,6 +211,49 @@ export type EventParams = {
   writeAccessRequested: { status: "allowed" | "cancelled" };
   contactRequested: { status: "sent" | "cancelled" };
   scanQrPopupClosed: void;
+  activated: void;
+  deactivated: void;
+  safeAreaChanged: void;
+  contentSafeAreaChanged: void;
+  fullscreenChanged: void;
+  fullscreenFailed: { error: "UNSUPPORTED" | "ALREADY_FULLSCREEN" };
+  homeScreenAdded: void;
+  homeScreenChecked: { status: "unsupported" | "unknown" | "added" | "missed" };
+  accelerometerStarted: void;
+  accelerometerStopped: void;
+  accelerometerChanged: void;
+  accelerometerFailed: { error: "UNSUPPORTED" };
+  deviceOrientationStarted: void;
+  deviceOrientationStopped: void;
+  deviceOrientationChanged: void;
+  deviceOrientationFailed: { error: "UNSUPPORTED" };
+  gyroscopeStarted: void;
+  gyroscopeStopped: void;
+  gyroscopeChanged: void;
+  gyroscopeFailed: { error: "UNSUPPORTED" };
+  locationManagerUpdated: void;
+  locationRequested: { locationData: LocationData };
+  shareMessageSent: void;
+  shareMessageFailed: {
+    error:
+      | "UNSUPPORTED"
+      | "MESSAGE_EXPIRED"
+      | "MESSAGE_SEND_FAILED"
+      | "USER_DECLINED"
+      | "UNKNOWN_ERROR";
+  };
+  emojiStatusSet: void;
+  emojiStatusFailed: {
+    error:
+      | "UNSUPPORTED"
+      | "SUGGESTED_EMOJI_INVALID"
+      | "DURATION_INVALID"
+      | "USER_DECLINED"
+      | "SERVER_ERROR"
+      | "UNKNOWN_ERROR";
+  };
+  emojiStatusAccessRequested: { status: "allowed" | "cancelled" };
+  fileDownloadRequested: { status: "downloading" | "cancelled" };
 };
 
 export type PopupParams = {
