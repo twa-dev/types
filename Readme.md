@@ -1,4 +1,5 @@
 ## Types
+
 [![npm version](https://img.shields.io/npm/v/@twa-dev/types)](https://www.npmjs.com/package/@twa-dev/types)
 
 Types for [Telegram Web Apps (TWA)](https://core.telegram.org/bots/webapps) SDK.
@@ -11,11 +12,10 @@ Types for [Telegram Web Apps (TWA)](https://core.telegram.org/bots/webapps) SDK.
 npm i @twa-dev/types
 ```
 
-
 ### Usage Example
 
 ```ts
-import { Telegram } from "@twa-dev/types"
+import { Telegram } from "@twa-dev/types";
 
 declare global {
   interface Window {
@@ -27,6 +27,7 @@ window.Telegram.WebApp.HapticFeedback.notificationOccurred("success");
 ```
 
 ### Exported Types
+
 - [`WebAppUser`](https://core.telegram.org/bots/webapps#webappuser)
 - [`WebAppChat`](https://core.telegram.org/bots/webapps#webappchat)
 - [`WebAppInitData`](https://core.telegram.org/bots/webapps#webappinitdata)
@@ -51,6 +52,13 @@ window.Telegram.WebApp.HapticFeedback.notificationOccurred("success");
 - [`StoryWidgetLink`](https://core.telegram.org/bots/webapps#storywidgetlink)
 - [`Accelerometer`](https://core.telegram.org/bots/webapps#accelerometer)
 - [`DeviceOrientation`](https://core.telegram.org/bots/webapps#deviceorientation)
+- [`DeviceOrientationStartParams`](https://core.telegram.org/bots/webapps#deviceorientationstartparams)
 - [`Gyroscope`](https://core.telegram.org/bots/webapps#gyroscope)
+- [`GyroscopeStartParams`](https://core.telegram.org/bots/webapps#gyroscopestartparams)
 - [`LocationManager`](https://core.telegram.org/bots/webapps#locationmanager)
+- [`LocationData`](https://core.telegram.org/bots/webapps#locationdata)
+- [`SafeAreaInset`](https://core.telegram.org/bots/webapps#safeareainset)
+- [`ContentSafeAreaInset`](https://core.telegram.org/bots/webapps#contentsafeareainset)
+- [`EmojiStatusParams`](https://core.telegram.org/bots/webapps#emojistatusparams)
+- [`DownloadFileParams`](https://core.telegram.org/bots/webapps#downloadfileparams)
 - `Platforms`

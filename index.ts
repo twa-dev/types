@@ -73,26 +73,29 @@ export interface CloudStorage {
   setItem: (
     key: CloudStorageKey,
     value: CloudStorageValue,
-    callback?: (error: string | null, result?: boolean) => void
+    callback?: (error: string | null, result?: boolean) => unknown
   ) => void;
   getItem: (
     key: CloudStorageKey,
-    callback?: (error: string | null, result?: CloudStorageValue) => void
+    callback?: (error: string | null, result?: CloudStorageValue) => unknown
   ) => void;
   getItems: (
     keys: Array<CloudStorageKey>,
-    callback?: (error: string | null, result?: CloudStorageItems) => void
+    callback?: (error: string | null, result?: CloudStorageItems) => unknown
   ) => void;
   getKeys: (
-    callback?: (error: string | null, result?: Array<CloudStorageKey>) => void
+    callback?: (
+      error: string | null,
+      result?: Array<CloudStorageKey>
+    ) => unknown
   ) => void;
   removeItem: (
     key: CloudStorageKey,
-    callback?: (error: string | null, result?: boolean) => void
+    callback?: (error: string | null, result?: boolean) => unknown
   ) => void;
   removeItems: (
     key: Array<CloudStorageKey>,
-    callback?: (error: string | null, result?: boolean) => void
+    callback?: (error: string | null, result?: boolean) => unknown
   ) => void;
 }
 
@@ -218,7 +221,7 @@ export type EventParams = {
   fullscreenChanged: void;
   fullscreenFailed: { error: "UNSUPPORTED" | "ALREADY_FULLSCREEN" };
   homeScreenAdded: void;
-  homeScreenChecked: { status: "unsupported" | "unknown" | "added" | "missed" };
+  homeScreenChecked: { status: HomeScreenStatus };
   accelerometerStarted: void;
   accelerometerStopped: void;
   accelerometerChanged: void;
@@ -308,9 +311,9 @@ export type Accelerometer = {
   z: number;
   start: (
     params: AccelerometerStartParams,
-    callback?: (isStarted: boolean) => void
+    callback?: (isStarted: boolean) => unknown
   ) => Accelerometer;
-  stop: (callback?: (isStopped: boolean) => void) => Accelerometer;
+  stop: (callback?: (isStopped: boolean) => unknown) => Accelerometer;
 };
 
 export type DeviceOrientationStartParams = {
@@ -326,9 +329,9 @@ export type DeviceOrientation = {
   gamma: number;
   start: (
     params: DeviceOrientationStartParams,
-    callback?: (isStarted: boolean) => void
+    callback?: (isStarted: boolean) => unknown
   ) => DeviceOrientation;
-  stop: (callback?: (isStopped: boolean) => void) => DeviceOrientation;
+  stop: (callback?: (isStopped: boolean) => unknown) => DeviceOrientation;
 };
 
 export type GyroscopeStartParams = {
@@ -342,9 +345,9 @@ export type Gyroscope = {
   z: number;
   start: (
     params: GyroscopeStartParams,
-    callback?: (isStarted: boolean) => void
+    callback?: (isStarted: boolean) => unknown
   ) => Gyroscope;
-  stop: (callback?: (isStopped: boolean) => void) => Gyroscope;
+  stop: (callback?: (isStopped: boolean) => unknown) => Gyroscope;
 };
 
 export type LocationData = {
@@ -364,9 +367,9 @@ export type LocationManager = {
   isLocationAvailable: boolean;
   isAccessRequested: boolean;
   isAccessGranted: boolean;
-  init: (callback?: (isInitialized: boolean) => void) => LocationManager;
+  init: (callback?: (isInitialized: boolean) => unknown) => LocationManager;
   getLocation: (
-    callback: (data: LocationData | null) => void
+    callback: (data: LocationData | null) => unknown
   ) => LocationManager;
   openSettings: () => LocationManager;
 };
@@ -382,15 +385,15 @@ export type BiometricManager = {
   init: (callback?: VoidFunction) => BiometricManager;
   requestAccess: (
     params: BiometricRequestAccessParams,
-    callback?: (isAccessGranted: boolean) => void
+    callback?: (isAccessGranted: boolean) => unknown
   ) => BiometricManager;
   authenticate: (
     params: BiometricAuthenticateParams,
-    callback?: (isAuthenticated: boolean) => void
+    callback?: (isAuthenticated: boolean) => unknown
   ) => BiometricManager;
   updateBiometricToken: (
     token: string,
-    callback?: (isBiometricTokenUpdated: boolean) => void
+    callback?: (isBiometricTokenUpdated: boolean) => unknown
   ) => BiometricManager;
   openSettings: () => BiometricManager;
 };
@@ -470,7 +473,7 @@ export interface WebApp {
   ) => void;
   showConfirm: (
     message: string,
-    callback?: (confirmed: boolean) => void
+    callback?: (confirmed: boolean) => unknown
   ) => void;
   showPopup: (params: PopupParams, callback?: (id?: string) => unknown) => void;
   showAlert: (message: string, callback?: () => unknown) => void;
@@ -511,18 +514,18 @@ export interface WebApp {
   unlockOrientation: VoidFunction;
   addToHomeScreen: VoidFunction;
   checkHomeScreenStatus: (
-    callback?: (status: HomeScreenStatus) => void
+    callback?: (status: HomeScreenStatus) => unknown
   ) => void;
-  shareMessage: (msg_id: string, callback?: (isSent: boolean) => void) => void;
+  shareMessage: (msgId: string, callback?: (isSent: boolean) => unknown) => void;
   setEmojiStatus: (
-    custom_emoji_id: string,
+    customEmojiId: string,
     params?: EmojiStatusParams,
     callback?: (isSet: boolean) => void
   ) => void;
-  requestEmojiStatusAccess: (callback?: (isGranted: boolean) => void) => void;
+  requestEmojiStatusAccess: (callback?: (isGranted: boolean) => unknown) => void;
   downloadFile: (
     params: DownloadFileParams,
-    callback?: (isAccepted: boolean) => void
+    callback?: (isAccepted: boolean) => unknown
   ) => void;
 }
 
