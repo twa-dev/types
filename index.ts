@@ -516,13 +516,18 @@ export interface WebApp {
   checkHomeScreenStatus: (
     callback?: (status: HomeScreenStatus) => unknown
   ) => void;
-  shareMessage: (msgId: string, callback?: (isSent: boolean) => unknown) => void;
+  shareMessage: (
+    msgId: string,
+    callback?: (isSent: boolean) => unknown
+  ) => void;
   setEmojiStatus: (
     customEmojiId: string,
     params?: EmojiStatusParams,
-    callback?: (isSet: boolean) => void
+    callback?: (isSet: boolean) => unknown
   ) => void;
-  requestEmojiStatusAccess: (callback?: (isGranted: boolean) => unknown) => void;
+  requestEmojiStatusAccess: (
+    callback?: (isGranted: boolean) => unknown
+  ) => void;
   downloadFile: (
     params: DownloadFileParams,
     callback?: (isAccepted: boolean) => unknown
