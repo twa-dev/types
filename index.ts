@@ -31,6 +31,7 @@ export interface WebAppInitData {
   chat?: WebAppChat;
   chat_type?: "sender" | "private" | "group" | "supergroup" | "channel";
   chat_instance?: string;
+  signature: string;
 }
 
 export interface ThemeParams {
@@ -72,26 +73,29 @@ export interface CloudStorage {
   setItem: (
     key: CloudStorageKey,
     value: CloudStorageValue,
-    callback?: (error: string | null, result?: boolean) => void
+    callback?: (error: string | null, result?: boolean) => unknown
   ) => void;
   getItem: (
     key: CloudStorageKey,
-    callback?: (error: string | null, result?: CloudStorageValue) => void
+    callback?: (error: string | null, result?: CloudStorageValue) => unknown
   ) => void;
   getItems: (
     keys: Array<CloudStorageKey>,
-    callback?: (error: string | null, result?: CloudStorageItems) => void
+    callback?: (error: string | null, result?: CloudStorageItems) => unknown
   ) => void;
   getKeys: (
-    callback?: (error: string | null, result?: Array<CloudStorageKey>) => void
+    callback?: (
+      error: string | null,
+      result?: Array<CloudStorageKey>
+    ) => unknown
   ) => void;
   removeItem: (
     key: CloudStorageKey,
-    callback?: (error: string | null, result?: boolean) => void
+    callback?: (error: string | null, result?: boolean) => unknown
   ) => void;
   removeItems: (
     key: Array<CloudStorageKey>,
-    callback?: (error: string | null, result?: boolean) => void
+    callback?: (error: string | null, result?: boolean) => unknown
   ) => void;
 }
 
@@ -166,7 +170,35 @@ export type EventNames =
   | "clipboardTextReceived"
   | "writeAccessRequested"
   | "contactRequested"
-  | "scanQrPopupClosed";
+  | "scanQrPopupClosed"
+  | "activated"
+  | "deactivated"
+  | "safeAreaChanged"
+  | "contentSafeAreaChanged"
+  | "fullscreenChanged"
+  | "fullscreenFailed"
+  | "homeScreenAdded"
+  | "homeScreenChecked"
+  | "accelerometerStarted"
+  | "accelerometerStopped"
+  | "accelerometerChanged"
+  | "accelerometerFailed"
+  | "deviceOrientationStarted"
+  | "deviceOrientationStopped"
+  | "deviceOrientationChanged"
+  | "deviceOrientationFailed"
+  | "gyroscopeStarted"
+  | "gyroscopeStopped"
+  | "gyroscopeChanged"
+  | "gyroscopeFailed"
+  | "locationManagerUpdated"
+  | "locationRequested"
+  | "shareMessageSent"
+  | "shareMessageFailed"
+  | "emojiStatusSet"
+  | "emojiStatusFailed"
+  | "emojiStatusAccessRequested"
+  | "fileDownloadRequested";
 
 export type EventParams = {
   invoiceClosed: { url: string; status: InvoiceStatuses };
@@ -182,6 +214,49 @@ export type EventParams = {
   writeAccessRequested: { status: "allowed" | "cancelled" };
   contactRequested: { status: "sent" | "cancelled" };
   scanQrPopupClosed: void;
+  activated: void;
+  deactivated: void;
+  safeAreaChanged: void;
+  contentSafeAreaChanged: void;
+  fullscreenChanged: void;
+  fullscreenFailed: { error: "UNSUPPORTED" | "ALREADY_FULLSCREEN" };
+  homeScreenAdded: void;
+  homeScreenChecked: { status: HomeScreenStatus };
+  accelerometerStarted: void;
+  accelerometerStopped: void;
+  accelerometerChanged: void;
+  accelerometerFailed: { error: "UNSUPPORTED" };
+  deviceOrientationStarted: void;
+  deviceOrientationStopped: void;
+  deviceOrientationChanged: void;
+  deviceOrientationFailed: { error: "UNSUPPORTED" };
+  gyroscopeStarted: void;
+  gyroscopeStopped: void;
+  gyroscopeChanged: void;
+  gyroscopeFailed: { error: "UNSUPPORTED" };
+  locationManagerUpdated: void;
+  locationRequested: { locationData: LocationData };
+  shareMessageSent: void;
+  shareMessageFailed: {
+    error:
+      | "UNSUPPORTED"
+      | "MESSAGE_EXPIRED"
+      | "MESSAGE_SEND_FAILED"
+      | "USER_DECLINED"
+      | "UNKNOWN_ERROR";
+  };
+  emojiStatusSet: void;
+  emojiStatusFailed: {
+    error:
+      | "UNSUPPORTED"
+      | "SUGGESTED_EMOJI_INVALID"
+      | "DURATION_INVALID"
+      | "USER_DECLINED"
+      | "SERVER_ERROR"
+      | "UNKNOWN_ERROR";
+  };
+  emojiStatusAccessRequested: { status: "allowed" | "cancelled" };
+  fileDownloadRequested: { status: "downloading" | "cancelled" };
 };
 
 export type PopupParams = {
@@ -225,6 +300,80 @@ export type BiometricAuthenticateParams = {
   reason?: string;
 };
 
+export type AccelerometerStartParams = {
+  refresh_rate?: number;
+};
+
+export type Accelerometer = {
+  isStarted: boolean;
+  x: number;
+  y: number;
+  z: number;
+  start: (
+    params: AccelerometerStartParams,
+    callback?: (isStarted: boolean) => unknown
+  ) => Accelerometer;
+  stop: (callback?: (isStopped: boolean) => unknown) => Accelerometer;
+};
+
+export type DeviceOrientationStartParams = {
+  refresh_rate?: number;
+  need_absolute?: boolean;
+};
+
+export type DeviceOrientation = {
+  isStarted: boolean;
+  absolute: boolean;
+  alpha: number;
+  beta: number;
+  gamma: number;
+  start: (
+    params: DeviceOrientationStartParams,
+    callback?: (isStarted: boolean) => unknown
+  ) => DeviceOrientation;
+  stop: (callback?: (isStopped: boolean) => unknown) => DeviceOrientation;
+};
+
+export type GyroscopeStartParams = {
+  refresh_rate?: number;
+};
+
+export type Gyroscope = {
+  isStarted: boolean;
+  x: number;
+  y: number;
+  z: number;
+  start: (
+    params: GyroscopeStartParams,
+    callback?: (isStarted: boolean) => unknown
+  ) => Gyroscope;
+  stop: (callback?: (isStopped: boolean) => unknown) => Gyroscope;
+};
+
+export type LocationData = {
+  latitude: number;
+  longitude: number;
+  altitude: number;
+  course: number;
+  speed: number;
+  horizontal_accuracy: number;
+  vertical_accuracy: number;
+  course_accuracy: number;
+  speed_accuracy: number;
+};
+
+export type LocationManager = {
+  isInited: boolean;
+  isLocationAvailable: boolean;
+  isAccessRequested: boolean;
+  isAccessGranted: boolean;
+  init: (callback?: (isInitialized: boolean) => unknown) => LocationManager;
+  getLocation: (
+    callback: (data: LocationData | null) => unknown
+  ) => LocationManager;
+  openSettings: () => LocationManager;
+};
+
 export type BiometricManager = {
   isInited: boolean;
   isBiometricAvailable: boolean;
@@ -236,15 +385,15 @@ export type BiometricManager = {
   init: (callback?: VoidFunction) => BiometricManager;
   requestAccess: (
     params: BiometricRequestAccessParams,
-    callback?: (isAccessGranted: boolean) => void
+    callback?: (isAccessGranted: boolean) => unknown
   ) => BiometricManager;
   authenticate: (
     params: BiometricAuthenticateParams,
-    callback?: (isAuthenticated: boolean) => void
+    callback?: (isAuthenticated: boolean) => unknown
   ) => BiometricManager;
   updateBiometricToken: (
     token: string,
-    callback?: (isBiometricTokenUpdated: boolean) => void
+    callback?: (isBiometricTokenUpdated: boolean) => unknown
   ) => BiometricManager;
   openSettings: () => BiometricManager;
 };
@@ -257,6 +406,26 @@ export type StoryWidgetLink = {
 export type ShareStoryParams = {
   text?: string;
   widget_link?: StoryWidgetLink;
+};
+
+export type SafeAreaInset = {
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type ContentSafeAreaInset = SafeAreaInset;
+
+export type HomeScreenStatus = "unsupported" | "unknown" | "added" | "missed";
+
+export type EmojiStatusParams = {
+  duration?: number;
+};
+
+export type DownloadFileParams = {
+  url: string;
+  file_name: string;
 };
 
 export interface WebApp {
@@ -304,7 +473,7 @@ export interface WebApp {
   ) => void;
   showConfirm: (
     message: string,
-    callback?: (confirmed: boolean) => void
+    callback?: (confirmed: boolean) => unknown
   ) => void;
   showPopup: (params: PopupParams, callback?: (id?: string) => unknown) => void;
   showAlert: (message: string, callback?: () => unknown) => void;
@@ -330,6 +499,39 @@ export interface WebApp {
   shareToStory: (mediaURL: string, params?: ShareStoryParams) => void;
   bottomBarColor: string;
   setBottomBarColor: (bottomBarColor: string) => void;
+  isActive: boolean;
+  isFullscreen: boolean;
+  isOrientationLocked: boolean;
+  safeAreaInset: SafeAreaInset;
+  contentSafeAreaInset: ContentSafeAreaInset;
+  Accelerometer: Accelerometer;
+  DeviceOrientation: DeviceOrientation;
+  Gyroscope: Gyroscope;
+  LocationManager: LocationManager;
+  requestFullscreen: VoidFunction;
+  exitFullscreen: VoidFunction;
+  lockOrientation: VoidFunction;
+  unlockOrientation: VoidFunction;
+  addToHomeScreen: VoidFunction;
+  checkHomeScreenStatus: (
+    callback?: (status: HomeScreenStatus) => unknown
+  ) => void;
+  shareMessage: (
+    msgId: string,
+    callback?: (isSent: boolean) => unknown
+  ) => void;
+  setEmojiStatus: (
+    customEmojiId: string,
+    params?: EmojiStatusParams,
+    callback?: (isSet: boolean) => unknown
+  ) => void;
+  requestEmojiStatusAccess: (
+    callback?: (isGranted: boolean) => unknown
+  ) => void;
+  downloadFile: (
+    params: DownloadFileParams,
+    callback?: (isAccepted: boolean) => unknown
+  ) => void;
 }
 
 export interface Telegram {
