@@ -104,10 +104,9 @@ export type Contact = {
   last_name?: string;
   phone_number: string;
   user_id: number;
-}
+};
 
-export type RequestContactResponse = {
-} & (
+export type RequestContactResponse =
   | {
       status: "sent";
       response: string;
@@ -115,12 +114,11 @@ export type RequestContactResponse = {
       responseUnsafe: {
         auth_date: string;
         contact: Contact;
-      }
+      };
     }
   | {
       status: "cancelled";
-    }
-);
+    };
 
 export interface BackButton {
   isVisible: boolean;
@@ -514,7 +512,9 @@ export interface WebApp {
     chooseChatTypes?: Array<"users" | "bots" | "groups" | "channels">
   ) => void;
   requestWriteAccess: (callback?: (access: boolean) => unknown) => void;
-  requestContact: (callback?: (access: boolean, response?: RequestContactResponse) => unknown) => void;
+  requestContact: (
+    callback?: (access: boolean, response?: RequestContactResponse) => unknown
+  ) => void;
   BiometricManager: BiometricManager;
   isVerticalSwipesEnabled: boolean;
   enableVerticalSwipes: VoidFunction;
