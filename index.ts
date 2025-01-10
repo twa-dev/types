@@ -410,7 +410,7 @@ export type BiometricManager = {
   ) => BiometricManager;
   authenticate: (
     params: BiometricAuthenticateParams,
-    callback?: (isAuthenticated: boolean) => unknown
+    callback?: (isAuthenticated: boolean; token?: string) => unknown
   ) => BiometricManager;
   updateBiometricToken: (
     token: string,
